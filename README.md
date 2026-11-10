@@ -81,3 +81,4 @@ npm run build
 - Mobil cihazlarda (`< 768px`) Three.js, pinned yatay galeri, özel imleç ve ağır video devre dışı bırakılarak 60fps akıcılık korunur.
 - Tüm görseller `AVIF` + duyarlı `WebP srcset` (`640w`, `1440w`) ile sunulur.
 
+# acargrup
