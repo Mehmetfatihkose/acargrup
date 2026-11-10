@@ -1,0 +1,23 @@
+{
+  "name": "acar-grup-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Acar Grup Kurumsal Portföy Web Sitesi — 50 Yıllık Güven (İnşaat & Plastik Hammadde)",
+  "scripts": {
+    "install:all": "npm install && npm --prefix server install && npm --prefix client install",
+    "seed": "npm --prefix server run seed",
+    "dev": "npm --prefix server run build && concurrently -n \"SERVER,CLIENT\" -c \"blue,yellow\" \"node server/start.cjs\" \"npm --prefix client run dev\"",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "build": "npm --prefix server run build && npm --prefix client run build",
+    "start": "npm --prefix server run start",
+    "typecheck": "npm --prefix server run typecheck && npm --prefix client run typecheck"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
+

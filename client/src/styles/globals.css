@@ -1,0 +1,269 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   ACAR GRUP — KURUMSAL TASARIM SİSTEMİ & RENK DEĞİŞKENLERİ
+   Sadece 3 logo renk ailesi: Lacivert (--navy), Turuncu (--orange), Gri (--gray)
+   ========================================================================== */
+:root {
+  /* Ana Marka Renkleri */
+  --navy: #0A2540;
+  --orange: #FF6B00;
+  --gray: #7F8C8D;
+
+  /* Türetilmiş Tonlar */
+  --navy-deep: #061528;
+  --navy-light: #12365E;
+  --orange-hover: #E55F00;
+  --orange-glow: rgba(255, 107, 0, 0.35);
+  --paper: #F5F7FA;
+  --ink: #3A4750;
+  --white: #FFFFFF;
+
+  /* Tipografi Aileleri */
+  --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Standart Easing */
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ==========================================================================
+   TEMEL SIFIRLAMA & TİPOGRAFİ
+   ========================================================================== */
+html {
+  font-family: var(--font-sans);
+  background-color: var(--navy-deep);
+  color: var(--white);
+  scroll-behavior: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1.65;
+  overflow-x: hidden;
+  background-color: var(--navy-deep);
+  color: var(--white);
+}
+
+/* Lenis Smooth Scroll Uyumluluğu */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Başlık ve Gövde Tipografi Yardımcıları */
+.font-serif-heritage {
+  font-family: var(--font-serif);
+}
+
+.font-industrial {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-sans);
+}
+
+.hero-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 9vw, 9rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+.section-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   ERİŞİLEBİLİRLİK: GÖRÜNÜR TURUNCU FOCUS HALKASI (WCAG AA)
+   ========================================================================== */
+:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+}
+
+/* Özel imleç aktifken masaüstünde varsayılan imleci nazikçe yönet */
+@media (pointer: fine) and (min-width: 768px) {
+  body.custom-cursor-enabled,
+  body.custom-cursor-enabled a,
+  body.custom-cursor-enabled button,
+  body.custom-cursor-enabled [role="button"] {
+    cursor: none;
+  }
+  body.custom-cursor-enabled input,
+  body.custom-cursor-enabled textarea,
+  body.custom-cursor-enabled select {
+    cursor: text;
+  }
+}
+
+/* ==========================================================================
+   KOYU BÖLÜMLER İÇİN HAFİF DOKU (Donanım Hızlandırmalı, 0 GPU Yükü)
+   ========================================================================== */
+.grain-surface {
+  position: relative;
+}
+
+.grain-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.035;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* ==========================================================================
+   GRADYANLAR (Yalnızca Hero ve CTA Bölümleri İçin)
+   ========================================================================== */
+.bg-hero-gradient {
+  background: linear-gradient(
+    180deg,
+    rgba(6, 21, 40, 0.92) 0%,
+    rgba(10, 37, 64, 0.62) 48%,
+    rgba(6, 21, 40, 0.96) 100%
+  );
+}
+
+.bg-cta-gradient {
+  background: linear-gradient(
+    130deg,
+    var(--navy-deep) 0%,
+    var(--navy) 58%,
+    rgba(229, 95, 0, 0.72) 100%
+  );
+}
+
+/* ==========================================================================
+   FOOTER DEV OUTLINE METİN EFEKTİ
+   ========================================================================== */
+.footer-giant-wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.88;
+  letter-spacing: 0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.22);
+  background-image: linear-gradient(90deg, var(--orange) 0%, var(--orange) 50%, transparent 50%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: background-position 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    -webkit-text-stroke-color 0.4s ease;
+}
+
+.footer-giant-wordmark:hover {
+  background-position: 0% 0;
+  -webkit-text-stroke-color: var(--orange);
+}
+
+/* ==========================================================================
+   SONSUZ KAYAN MARQUEE & SÜRDÜRÜLEBİLİRLİK SVG AKIŞI
+   ========================================================================== */
+@keyframes marqueeScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 34s linear infinite;
+}
+
+.marquee-wrapper:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+@keyframes dashFlow {
+  to {
+    stroke-dashoffset: -48;
+  }
+}
+
+.svg-dash-flow {
+  stroke-dasharray: 8 8;
+  animation: dashFlow 2.4s linear infinite;
+}
+
+@keyframes scrollDotDrop {
+  0% {
+    transform: translate3d(0, -8px, 0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, 36px, 0);
+    opacity: 0;
+  }
+}
+
+.animate-scroll-dot {
+  animation: scrollDotDrop 2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+/* Yatay kaydırma çubuğu gizleme (mobil proje şeridi için) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ==========================================================================
+   PREFERS-REDUCED-MOTION: HAREKET AZALTMA TERCİHİNE TAM UYUM
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.15s !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-marquee,
+  .svg-dash-flow,
+  .animate-scroll-dot {
+    animation: none !important;
+  }
+}
+
